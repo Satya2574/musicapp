@@ -4,11 +4,17 @@
   "description": "A simple Music Recommender system built using Collaborative filtering and Spotify API.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cd client && npm run build ",
-    "install-client": "cd client && npm install",
-    "heroku-postbuild": "npm  run install-client && npm run build"
+    "start": "npm run start --prefix server",
+    "client": "npm run start --prefix client",
+    "dev-server": "npm run dev --prefix server",
+    "dev": "concurrently \"npm run dev-server\" \"npm run client\" ",
+    "test:client": "npm run test --prefix client",
+    "setup": "npm install && npm install --prefix client && npm install --prefix server",
+    "heroku-postbuild": " npm install && npm install --prefix client && npm install --prefix server && npm run build --prefix client"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^6.0.1"
+  }
 }
